@@ -1,5 +1,6 @@
-namespace OpenAILibrary.Model;
+namespace OpenAILibrary.Model.Embedding;
 
+//see https://platform.openai.com/docs/api-reference/embeddings/create
 [JsonIncludePrivateFields]
 public class EmbeddingRequest
 {

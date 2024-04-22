@@ -50,7 +50,7 @@ public record RequestOptions(
     double topP = 1,
     string user = "optional");
 
-public static class RequestFactory
+public static class CompletionRequestFactory
 {
   
     public static CompletionRequest CreateRequestGPT4_Turbo(Message[] messages, RequestOptions? options = null)
@@ -76,11 +76,6 @@ public static class RequestFactory
     public static CompletionRequest CreateRequestGPT3_4K(Message[] messages, RequestOptions? options = null)
     {
         return CreateRequest(messages, "gpt-3.5-turbo", options);
-    }
-    
-    public static CompletionRequest CreateRequestGPT_Instruct(Message[] messages, RequestOptions? options = null)
-    {
-        return CreateRequest(messages, "gpt-3.5-turbo-instruct", options);
     }
     
     public static CompletionRequest CreateRequest(Message[] messages, string model, RequestOptions? options = null)

@@ -1,4 +1,4 @@
-namespace OpenAILibrary.Model;
+namespace OpenAILibrary.Model.Completion;
 
 public record Message(
     string role,

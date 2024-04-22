@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Version>1.0.4</Version>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Model\" />
+      <None Include="readme.md" Pack="true" PackagePath=""/>
+        <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
     </ItemGroup>
 
 </Project>
