@@ -1,6 +1,6 @@
-namespace OpenAILibrary.Model;
+namespace OpenAILibrary.Model.Completion;
 
-public record Response(
+public record CompletionResponse(
     string id,
     string @object,
     int created,

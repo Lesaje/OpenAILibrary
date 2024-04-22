@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
 
-namespace OpenAILibrary.Model;
+namespace OpenAILibrary.Model.Completion;
 
 //see https://platform.openai.com/docs/api-reference/chat/create
 [JsonIncludePrivateFields]
-public class Request
+public class CompletionRequest
 {
     private Message[] messages;
     private string model;
@@ -14,13 +14,13 @@ public class Request
     private int? max_tokens;    //do not change to non-nullable
     private int n;
     private double presence_penalty;
-    private string[] stop;
+    private string[]? stop;
     private bool stream;
     private double temperature;
     private double top_p;
     private string user;
 
-    public Request(
+    public CompletionRequest(
         Message[] messages,
         string model,
         RequestOptions options)
@@ -53,37 +53,42 @@ public record RequestOptions(
 public static class RequestFactory
 {
   
-    public static Request CreateRequestGPT4_Turbo(Message[] messages, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT4_Turbo(Message[] messages, RequestOptions? options = null)
     {
-        return CreateRequest(messages, "gpt-4-1106-preview", options);
+        return CreateRequest(messages, "gpt-4-0125-preview", options);
     }
     
-    public static Request CreateRequestGPT4_32K(Message[] messages, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT4_32K(Message[] messages, RequestOptions? options = null)
     {
         return CreateRequest(messages, "gpt-4-32k", options);
     }
     
-    public static Request CreateRequestGPT4_8K(Message[] messages, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT4_8K(Message[] messages, RequestOptions? options = null)
     {
         return CreateRequest(messages, "gpt-4", options);
     }
     
-    public static Request CreateRequestGPT3_16K(Message[] messages, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT3_16K(Message[] messages, RequestOptions? options = null)
     {
         return CreateRequest(messages, "gpt-3.5-turbo-16k", options);
     }
     
-    public static Request CreateRequestGPT3_4K(Message[] messages, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT3_4K(Message[] messages, RequestOptions? options = null)
     {
         return CreateRequest(messages, "gpt-3.5-turbo", options);
     }
     
-    public static Request CreateRequest(Message[] messages, string model, RequestOptions? options = null)
+    public static CompletionRequest CreateRequestGPT_Instruct(Message[] messages, RequestOptions? options = null)
+    {
+        return CreateRequest(messages, "gpt-3.5-turbo-instruct", options);
+    }
+    
+    public static CompletionRequest CreateRequest(Message[] messages, string model, RequestOptions? options = null)
     {
         if (options is null)
         {
-            return new Request(messages, model, new RequestOptions());
+            return new CompletionRequest(messages, model, new RequestOptions());
         }
-        return new Request(messages, model, options);
+        return new CompletionRequest(messages, model, options);
     }
 }
